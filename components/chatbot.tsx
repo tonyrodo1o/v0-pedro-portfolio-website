@@ -41,11 +41,12 @@ function getMessageText(message: { parts?: Array<{ type: string; text?: string }
 
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false)
+  const [input, setInput] = useState('')
   const { language } = useLanguage()
   const labels = chatLabels[language]
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  const { messages, sendMessage, status, input, setInput } = useChat({
+  const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({ api: '/api/chat' }),
   })
 
