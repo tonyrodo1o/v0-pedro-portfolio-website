@@ -115,12 +115,12 @@ export function AudioManager() {
 
   return (
     <>
-      {/* Background Music - Using a royalty-free ambient tech track URL */}
+      {/* Background Music - Using Web Audio API for ambient synth music */}
       <audio
         ref={audioRef}
         loop
-        preload="none"
-        src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946b0939c5.mp3?filename=ambient-technology-122702.mp3"
+        preload="auto"
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
       />
 
       {/* Welcome Toast */}
