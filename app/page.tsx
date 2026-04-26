@@ -19,13 +19,18 @@ export default function HomePage() {
       <AudioManager />
       <Navbar />
       <SocialLinks />
-      <Hero />
-      <About />
-      <AboutMe />
-      <Specialties />
-      <Portfolio />
-      <Contact />
-      <Payments />
+      
+      {/* Contenedor principal con ancho máximo de 900px */}
+      <div className="mx-auto w-full max-w-[900px] px-4">
+        <Hero />
+        <About />
+        <AboutMe />
+        <Specialties />
+        <Portfolio />
+        <Contact />
+        <Payments />
+      </div>
+      
       <Footer />
       <Chatbot />
     </main>
