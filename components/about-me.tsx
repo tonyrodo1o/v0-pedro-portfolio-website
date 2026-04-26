@@ -1,11 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
-import { Heart, Target, Lightbulb, X } from 'lucide-react'
+import { useRef, useState, useCallback } from 'react'
+import { Heart, Target, Lightbulb, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useLanguage } from '@/lib/language-context'
-import Image from 'next/image'
 
 const galleryImages = [
   { id: 1, src: '/gallery/photo-1.jpg', alt: 'Professional photo 1' },
@@ -14,19 +13,61 @@ const galleryImages = [
   { id: 4, src: '/gallery/photo-4.jpg', alt: 'Professional photo 4' },
   { id: 5, src: '/gallery/photo-5.jpg', alt: 'Professional photo 5' },
   { id: 6, src: '/gallery/photo-6.jpg', alt: 'Professional photo 6' },
+  { id: 7, src: '/gallery/photo-7.jpg', alt: 'Professional photo 7' },
+  { id: 8, src: '/gallery/photo-8.jpg', alt: 'Professional photo 8' },
 ]
 
 export function AboutMe() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
+  const [galleryPage, setGalleryPage] = useState(0)
+
+  const IMAGES_PER_PAGE = 6
+  const totalGalleryPages = Math.ceil(galleryImages.length / IMAGES_PER_PAGE)
+  const visibleImages = galleryImages.slice(
+    galleryPage * IMAGES_PER_PAGE,
+    (galleryPage + 1) * IMAGES_PER_PAGE
+  )
 
   const values = [
     { icon: Heart, label: 'Pasión', labelEn: 'Passion', labelPt: 'Paixão' },
     { icon: Target, label: 'Excelencia', labelEn: 'Excellence', labelPt: 'Excelência' },
     { icon: Lightbulb, label: 'Innovación', labelEn: 'Innovation', labelPt: 'Inovação' },
   ]
+
+  const openLightbox = (globalIndex: number) => {
+    setSelectedImageIndex(globalIndex)
+  }
+
+  const closeLightbox = () => {
+    setSelectedImageIndex(null)
+  }
+
+  const goToNextImage = useCallback(() => {
+    if (selectedImageIndex !== null) {
+      setSelectedImageIndex((prev) => 
+        prev !== null ? (prev + 1) % galleryImages.length : 0
+      )
+    }
+  }, [selectedImageIndex])
+
+  const goToPrevImage = useCallback(() => {
+    if (selectedImageIndex !== null) {
+      setSelectedImageIndex((prev) => 
+        prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : 0
+      )
+    }
+  }, [selectedImageIndex])
+
+  const goToNextGalleryPage = () => {
+    setGalleryPage((prev) => (prev + 1) % totalGalleryPages)
+  }
+
+  const goToPrevGalleryPage = () => {
+    setGalleryPage((prev) => (prev - 1 + totalGalleryPages) % totalGalleryPages)
+  }
 
   return (
     <section id="about-me" className="py-20 relative overflow-hidden" ref={ref}>
@@ -71,76 +112,179 @@ export function AboutMe() {
                     className="flex items-center gap-2 px-4 py-2 rounded-full glass border-glow"
                   >
                     <value.icon className="w-5 h-5 text-primary" />
-                    <span className="text-foreground">{value.label}</span>
+                    <span className="text-foreground">
+                      {language === 'en' ? value.labelEn : language === 'pt' ? value.labelPt : value.label}
+                    </span>
                   </motion.div>
                 ))}
               </div>
             </div>
           </motion.div>
 
-          {/* Gallery Section */}
+          {/* Gallery Section with Carousel */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-xl font-semibold mb-6 text-foreground">{t.aboutMe.gallery}</h3>
-            <div className="grid grid-cols-3 gap-3">
-              {galleryImages.map((image, index) => (
-                <motion.button
-                  key={image.id}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => setSelectedImage(image.src)}
-                  className="relative aspect-square rounded-xl overflow-hidden border-glow group"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <span className="text-4xl font-bold text-primary/30">{image.id}</span>
-                  </div>
-                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
-                    <span className="opacity-0 group-hover:opacity-100 text-foreground text-sm transition-opacity">
-                      Ver
-                    </span>
-                  </div>
-                </motion.button>
-              ))}
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold text-foreground">{t.aboutMe.gallery}</h3>
+              
+              {/* Gallery Navigation */}
+              {totalGalleryPages > 1 && (
+                <div className="flex items-center gap-2">
+                  <motion.button
+                    onClick={goToPrevGalleryPage}
+                    className="p-2 rounded-full glass border-glow hover:glow-cyan-sm transition-all"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <ChevronLeft className="w-5 h-5 text-primary" />
+                  </motion.button>
+                  <span className="text-sm text-muted-foreground">
+                    {galleryPage + 1}/{totalGalleryPages}
+                  </span>
+                  <motion.button
+                    onClick={goToNextGalleryPage}
+                    className="p-2 rounded-full glass border-glow hover:glow-cyan-sm transition-all"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <ChevronRight className="w-5 h-5 text-primary" />
+                  </motion.button>
+                </div>
+              )}
             </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={galleryPage}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-3 gap-3"
+              >
+                {visibleImages.map((image, index) => {
+                  const globalIndex = galleryPage * IMAGES_PER_PAGE + index
+                  return (
+                    <motion.button
+                      key={image.id}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.08 }}
+                      onClick={() => openLightbox(globalIndex)}
+                      className="relative aspect-square rounded-xl overflow-hidden border-glow group"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                        <span className="text-4xl font-bold text-primary/30">{image.id}</span>
+                      </div>
+                      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
+                        <span className="opacity-0 group-hover:opacity-100 text-foreground text-sm transition-opacity">
+                          {language === 'es' ? 'Ver' : language === 'en' ? 'View' : 'Ver'}
+                        </span>
+                      </div>
+                    </motion.button>
+                  )
+                })}
+              </motion.div>
+            </AnimatePresence>
+
             <p className="text-sm text-muted-foreground mt-4 text-center">
-              * Añade tus fotos en /public/gallery/
+              * {language === 'es' ? 'Añade tus fotos en /public/gallery/' : 
+                 language === 'en' ? 'Add your photos to /public/gallery/' : 
+                 'Adicione suas fotos em /public/gallery/'}
             </p>
           </motion.div>
         </div>
       </div>
 
-      {/* Lightbox */}
-      {selectedImage && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-sm p-4"
-          onClick={() => setSelectedImage(null)}
-        >
+      {/* Lightbox with Navigation */}
+      <AnimatePresence>
+        {selectedImageIndex !== null && (
           <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            className="relative max-w-3xl w-full aspect-video rounded-2xl overflow-hidden glass border-glow"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-md p-4"
+            onClick={closeLightbox}
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-6xl font-bold text-primary/30">Foto</span>
-            </div>
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 p-2 rounded-full glass border-glow"
+            {/* Previous Button */}
+            <motion.button
+              onClick={(e) => {
+                e.stopPropagation()
+                goToPrevImage()
+              }}
+              className="absolute left-4 sm:left-8 p-3 rounded-full glass border-glow hover:glow-cyan-sm z-10"
+              whileHover={{ scale: 1.1, x: -5 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <X className="w-6 h-6 text-foreground" />
-            </button>
+              <ChevronLeft className="w-8 h-8 text-primary" />
+            </motion.button>
+
+            {/* Image Container */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full max-h-[80vh] aspect-video rounded-2xl overflow-hidden glass border-glow"
+            >
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10">
+                <div className="text-center">
+                  <span className="text-8xl font-bold text-primary/30">
+                    {galleryImages[selectedImageIndex].id}
+                  </span>
+                  <p className="text-muted-foreground mt-4">
+                    {language === 'es' ? 'Foto' : language === 'en' ? 'Photo' : 'Foto'} {selectedImageIndex + 1} / {galleryImages.length}
+                  </p>
+                </div>
+              </div>
+              
+              {/* Close Button */}
+              <button
+                onClick={closeLightbox}
+                className="absolute top-4 right-4 p-2 rounded-full glass border-glow hover:glow-cyan-sm transition-all"
+              >
+                <X className="w-6 h-6 text-foreground" />
+              </button>
+            </motion.div>
+
+            {/* Next Button */}
+            <motion.button
+              onClick={(e) => {
+                e.stopPropagation()
+                goToNextImage()
+              }}
+              className="absolute right-4 sm:right-8 p-3 rounded-full glass border-glow hover:glow-cyan-sm z-10"
+              whileHover={{ scale: 1.1, x: 5 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ChevronRight className="w-8 h-8 text-primary" />
+            </motion.button>
+
+            {/* Image Counter */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2">
+              {galleryImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setSelectedImageIndex(idx)
+                  }}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    idx === selectedImageIndex 
+                      ? 'bg-primary glow-cyan-sm w-6' 
+                      : 'bg-muted-foreground/30 hover:bg-primary/50'
+                  }`}
+                />
+              ))}
+            </div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   )
 }
