@@ -13,30 +13,40 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
-  const form = e.target as HTMLFormElement;
-  const formData = new FormData(form);
+  setIsSubmitting(true);
+
+  // 1. Captura manual y directa desde los elementos del formulario
+  const target = e.currentTarget;
+  const payload = {
+    name: (target.elements.namedItem('name') as HTMLInputElement).value,
+    email: (target.elements.namedItem('email') as HTMLInputElement).value,
+    message: (target.elements.namedItem('message') as HTMLTextAreaElement).value,
+  };
 
   try {
     const res = await fetch('/api/contact', {
       method: 'POST',
-      body: JSON.stringify({
-        name: formData.get('name'),
-        email: formData.get('email'),
-        message: formData.get('message'),
-      }),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json' 
+      },
+      body: JSON.stringify(payload), // Enviamos el objeto verificado
     });
 
     if (res.ok) {
-      alert("¡Mensaje enviado con éxito!");
-      form.reset();
+      setIsSubmitted(true);
+      target.reset();
     } else {
-      alert("Error al enviar el mensaje.");
+      const errorData = await res.json();
+      console.error("Error de la API:", errorData);
+      alert("Error al enviar.");
     }
   } catch (error) {
-    alert("Hubo un problema con la conexión.");
+    console.error("Error de conexión:", error);
+  } finally {
+    setIsSubmitting(false);
   }
 };
 
