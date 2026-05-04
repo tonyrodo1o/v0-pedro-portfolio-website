@@ -120,6 +120,7 @@ export function Contact() {
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   required
                   placeholder={t.contact.namePlaceholder}
                   className="w-full px-4 py-3 rounded-xl glass border-glow bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
@@ -133,6 +134,7 @@ export function Contact() {
                 <input
                   type="email"
                   id="email"
+                  name="name"
                   required
                   placeholder={t.contact.emailPlaceholder}
                   className="w-full px-4 py-3 rounded-xl glass border-glow bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
@@ -145,6 +147,7 @@ export function Contact() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   required
                   rows={5}
                   placeholder={t.contact.messagePlaceholder}
