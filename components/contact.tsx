@@ -134,7 +134,7 @@ export function Contact() {
                 <input
                   type="email"
                   id="email"
-                  name="name"
+                  name="email"
                   required
                   placeholder={t.contact.emailPlaceholder}
                   className="w-full px-4 py-3 rounded-xl glass border-glow bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
