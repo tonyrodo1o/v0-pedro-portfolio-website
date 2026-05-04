@@ -13,19 +13,32 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    
-    // Reset after 3 seconds
-    setTimeout(() => setIsSubmitted(false), 3000)
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  const form = e.target as HTMLFormElement;
+  const formData = new FormData(form);
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: formData.get('name'),
+        email: formData.get('email'),
+        message: formData.get('message'),
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (res.ok) {
+      alert("¡Mensaje enviado con éxito!");
+      form.reset();
+    } else {
+      alert("Error al enviar el mensaje.");
+    }
+  } catch (error) {
+    alert("Hubo un problema con la conexión.");
   }
+};
 
   const contactInfo = [
     { icon: Mail, label: 'pedrorodriguez@email.com', href: 'mailto:pedrorodriguez@email.com' },
