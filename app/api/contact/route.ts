@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     
-    // Extraemos las variables que envía el formulario (name, email, message)
+    // Nombres vinculados 1 a 1 con el formulario
     const { name, email, message } = body;
 
     const { data, error } = await resend.emails.send({
@@ -16,18 +16,15 @@ export async function POST(req: Request) {
       to: ['pedrorodact01@gmail.com'],
       subject: `Nuevo mensaje de ${name}`,
       react: EmailTemplate({ 
-        firstName: name, // Mapeamos el 'name' del formulario al 'firstName' del template
+        firstName: name, // Le pasamos 'name' al template
         email: email, 
         message: message 
       }),
     });
 
-    if (error) {
-      return NextResponse.json({ error }, { status: 500 });
-    }
-
+    if (error) return NextResponse.json({ error }, { status: 500 });
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ error: "Fallo en el servidor" }, { status: 500 });
   }
 }
