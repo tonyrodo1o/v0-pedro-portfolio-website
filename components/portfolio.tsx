@@ -23,16 +23,16 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
+    title: 'E-Commerce VENUSA',
     description: {
       es: 'Plataforma de comercio electrónico con IA para recomendaciones personalizadas',
       en: 'E-commerce platform with AI for personalized recommendations',
       pt: 'Plataforma de e-commerce com IA para recomendações personalizadas',
     },
     image: '/projects/project-1.jpg',
-    url: 'https://example.com/project1',
+    url: 'https://venusa.site',
     github: 'https://github.com',
-    tags: ['Next.js', 'TypeScript', 'AI', 'Stripe'],
+    tags: ['PHP', 'HTML', 'CSS', 'JAVA SCRIPT', 'MY SQL'],
   },
   {
     id: 2,
