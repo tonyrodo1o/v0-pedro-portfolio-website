@@ -1,4 +1,4 @@
-import { Resend } from 'resend';
+/*import { Resend } from 'resend';
 //import { EmailTemplate } from '../../../components/email-template';
 import { NextResponse } from 'next/server';
 
@@ -27,4 +27,4 @@ export async function POST(req: Request) {
   } catch (error) {
     return NextResponse.json({ error: "Fallo en el servidor" }, { status: 500 });
   }
-}
+}*/
