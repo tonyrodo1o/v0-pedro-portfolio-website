@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       from: 'Portfolio Contact <onboarding@resend.dev>',
       to: ['pedrorodact01@gmail.com'],
       subject: `Nuevo mensaje de ${name}`,
-      react: EmailTemplate({ 
+     // react: EmailTemplate({ 
         firstName: name, // Le pasamos 'name' al template
         email: email, 
         message: message 
