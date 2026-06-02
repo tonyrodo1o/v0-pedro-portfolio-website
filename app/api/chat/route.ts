@@ -94,6 +94,8 @@ MÉTODOS DE PAGAMENTO:
 Responda sempre de maneira profissional, amigável e concisa. Se você não tiver informações específicas, convide o usuário a entrar em contato diretamente com Pedro.`,
 }
 export const runtime = 'edge';
+
+  return result.toUIMessageStreamResponse();
 export async function POST(req: Request) {
   const { messages, language = 'es' } = await req.json();
 
