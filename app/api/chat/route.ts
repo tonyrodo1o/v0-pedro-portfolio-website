@@ -94,7 +94,7 @@ Responda sempre de maneira profissional, amigável e concisa. Se você não tive
 
 export async function POST(req: Request) {
   const { messages, language = 'es' } = await req.json()
-  export const runtime = 'edge';
+
   const systemPrompt = systemPrompts[language as keyof typeof systemPrompts] || systemPrompts.es
 
   const result = streamText({
