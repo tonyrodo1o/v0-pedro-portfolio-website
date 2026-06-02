@@ -17,10 +17,11 @@ export async function POST(req: Request) {
       to: ['pedrorodact01@gmail.com'],
       subject: `Nuevo mensaje de ${name}`,
      // react: EmailTemplate({ 
-        firstName: name, // Le pasamos 'name' al template
-        email: email, 
-        message: message 
-      }),
+       text: `
+Nombre: ${name}
+Email: ${email}
+Mensaje: ${message}
+  `,
     });
 
     if (error) return NextResponse.json({ error }, { status: 500 });
