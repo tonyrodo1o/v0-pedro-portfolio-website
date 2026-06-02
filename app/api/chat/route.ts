@@ -93,14 +93,13 @@ MÉTODOS DE PAGAMENTO:
 
 Responda sempre de maneira profissional, amigável e concisa. Se você não tiver informações específicas, convide o usuário a entrar em contato diretamente com Pedro.`,
 }
-export const runtime = 'edge';
 
-  return result.toUIMessageStreamResponse();
 export async function POST(req: Request) {
   const { messages, language = 'es' } = await req.json();
 
   const systemPrompt =
-    systemPrompts[language as keyof typeof systemPrompts] || systemPrompts.es;
+    systemPrompts[language as keyof typeof systemPrompts] ||
+    systemPrompts.es;
 
   const result = streamText({
     model: 'groq/llama-3.3-70b-versatile',
