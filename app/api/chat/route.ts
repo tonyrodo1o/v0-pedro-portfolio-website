@@ -1,4 +1,6 @@
-import { streamText, convertToModelMessages } from 'ai'
+import { streamText } from 'ai';
+
+export const runtime = 'nodejs';
 
 const systemPrompts = {
   es: `Eres el asistente virtual del Lic. Pedro Rodriguez, un profesional en Informática especializado en desarrollo Full Stack e Inteligencia Artificial.
@@ -93,16 +95,17 @@ Responda sempre de maneira profissional, amigável e concisa. Se você não tive
 }
 export const runtime = 'edge';
 export async function POST(req: Request) {
-  const { messages, language = 'es' } = await req.json()
+  const { messages, language = 'es' } = await req.json();
 
-  const systemPrompt = systemPrompts[language as keyof typeof systemPrompts] || systemPrompts.es
+  const systemPrompt =
+    systemPrompts[language as keyof typeof systemPrompts] || systemPrompts.es;
 
   const result = streamText({
     model: 'groq/llama-3.3-70b-versatile',
     system: systemPrompt,
-    messages: await convertToModelMessages(messages),
+    messages,
     maxOutputTokens: 500,
-  })
+  });
 
-  return result.toUIMessageStreamResponse()
+  return result.toUIMessageStreamResponse();
 }
