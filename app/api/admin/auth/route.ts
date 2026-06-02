@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
+export const runtime = 'edge';
 
 // Default admin credentials (in production, use environment variables or database)
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin'
