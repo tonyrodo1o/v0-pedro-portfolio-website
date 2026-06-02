@@ -6,7 +6,7 @@
   "dev": "next dev",
   "build": "npx @cloudflare/next-on-pages@1.13.7",
   "start": "next start",
-  "lint": "eslint ."
+  "lint": "eslint .",
 }
   "dependencies": {
     "@ai-sdk/react": "^3.0.170",
