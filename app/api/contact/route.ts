@@ -18,7 +18,7 @@ export async function POST(req: Request) {
       subject: `Nuevo mensaje de ${name}`,
      // react: EmailTemplate({ 
        text: `
-Nombre: ${name}
+firstName: ${name}
 Email: ${email}
 Mensaje: ${message}
   `,
