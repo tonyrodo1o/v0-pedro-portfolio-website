@@ -70,18 +70,22 @@ export default function AdminDashboard() {
   ])
   const [showGalleryForm, setShowGalleryForm] = useState(false)
 
-  const checkAuth = useCallback(async () => {
-    try {
-      const res = await fetch('/api/admin/auth')
-      if (!res.ok) {
-        router.push('/admin/login')
-      } else {
-        setIsLoading(false)
-      }
-    } catch {
+const checkAuth = useCallback(() => {
+  try {
+    const isLoggedIn = typeof window !== 'undefined' 
+      ? localStorage.getItem('admin_auth') === 'true'
+      : false
+
+    if (!isLoggedIn) {
       router.push('/admin/login')
+      return
     }
-  }, [router])
+
+    setIsLoading(false)
+  } catch {
+    router.push('/admin/login')
+  }
+}, [router])
 
   useEffect(() => {
     checkAuth()
