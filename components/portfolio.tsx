@@ -210,60 +210,62 @@ export function Portfolio() {
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {visibleProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group"
-              >
-              <div className="glass border-glow rounded-2xl overflow-hidden hover:glow-cyan-sm transition-all duration-300 h-full flex flex-col group">
-  
-  {/* IMAGE PREVIEW */}
-  <div className="relative h-40 overflow-hidden">
+  <motion.div
+    key={project.id}
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.4, delay: index * 0.1 }}
+    className="group"
+  >
+    <div className="glass border-glow rounded-2xl overflow-hidden hover:glow-cyan-sm transition-all duration-300 h-full flex flex-col group">
 
-    {/* IMAGEN REAL */}
-    <img
-      src={project.image}
-      alt={project.title}
-      className="w-full h-full object-cover"
-    />
+      {/* IMAGE PREVIEW */}
+      <div className="relative h-40 overflow-hidden">
 
-    {/* GRADIENTE (AHORA CON OPACIDAD, NO TAPANDO TODO) */}
-    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 opacity-60 pointer-events-none" />
+        {/* IMAGEN REAL */}
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover"
+        />
 
-    {/* OVERLAY BOTONES (SOLO HOVER) */}
-    <div className="absolute inset-0 bg-background/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-      
-      <motion.a
-        href={project.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <ExternalLink className="w-5 h-5 text-primary" />
-      </motion.a>
+        {/* GRADIENTE */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 opacity-60 pointer-events-none" />
 
-      {project.github && (
-        <motion.a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <Github className="w-5 h-5 text-primary" />
-        </motion.a>
-      )}
+        {/* OVERLAY BOTONES */}
+        <div className="absolute inset-0 bg-background/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+
+          <motion.a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ExternalLink className="w-5 h-5 text-primary" />
+          </motion.a>
+
+          {project.github && (
+            <motion.a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Github className="w-5 h-5 text-primary" />
+            </motion.a>
+          )}
+
+        </div>
+
+      </div>
 
     </div>
-
-  </div>
-</div>
-
+  </motion.div>
+))}
                   {/* Content */}
                   <div className="p-4 flex-1 flex flex-col">
                     <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
