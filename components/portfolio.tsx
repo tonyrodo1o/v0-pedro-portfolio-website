@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'   
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { ExternalLink, Github, Globe, ChevronLeft, ChevronRight } from 'lucide-react'
