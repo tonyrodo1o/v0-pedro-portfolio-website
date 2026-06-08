@@ -200,7 +200,6 @@ export function Portfolio() {
         </div>
 
         {/* Projects Grid with Animation */}
-        {/* Projects Grid with Animation */}
 <AnimatePresence mode="wait">
   <motion.div
     key={currentPage}
@@ -220,29 +219,22 @@ export function Portfolio() {
       >
         <div className="glass border-glow rounded-2xl overflow-hidden hover:glow-cyan-sm transition-all duration-300 h-full flex flex-col group">
 
-          {/* IMAGE PREVIEW */}
+          {/* IMAGE */}
           <div className="relative h-40 overflow-hidden">
-
-            {/* IMAGEN REAL */}
             <img
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
             />
 
-            {/* GRADIENTE */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 opacity-60 pointer-events-none" />
 
-            {/* OVERLAY BOTONES */}
             <div className="absolute inset-0 bg-background/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-
               <motion.a
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                className="p-2 rounded-full glass border-glow"
               >
                 <ExternalLink className="w-5 h-5 text-primary" />
               </motion.a>
@@ -252,21 +244,18 @@ export function Portfolio() {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  className="p-2 rounded-full glass border-glow"
                 >
                   <Github className="w-5 h-5 text-primary" />
                 </motion.a>
               )}
-
             </div>
-
           </div>
 
         </div>
       </motion.div>
     ))}
+
   </motion.div>
 </AnimatePresence>
 
