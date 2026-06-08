@@ -143,7 +143,9 @@ export function Portfolio() {
   }
 
   return (
-    <section id="portfolio" className="py-20 relative overflow-hidden" ref={ref}>
+    <section id="portfolio" 
+      
+      className="py-20 relative overflow-hidden" ref={ref}>
       <div className="absolute inset-0 cyber-grid opacity-30" />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -215,37 +217,54 @@ export function Portfolio() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="glass border-glow rounded-2xl overflow-hidden hover:glow-cyan-sm transition-all duration-300 h-full flex flex-col">
-                  {/* Image Preview */}
-                  <div className="relative h-40 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">
-                      <Globe className="w-12 h-12 text-primary/50" />
-                    </div>
-                    <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-                      <motion.a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                      >
-                        <ExternalLink className="w-5 h-5 text-primary" />
-                      </motion.a>
-                      {project.github && (
-                        <motion.a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                        >
-                          <Github className="w-5 h-5 text-primary" />
-                        </motion.a>
-                      )}
-                    </div>
-                  </div>
+                <div className="glass border-glow rounded-2xl overflow-hidden hover:glow-cyan-sm transition-all duration-300 h-full flex flex-col group">
+  
+  {/* IMAGE PREVIEW */}
+  <div className="relative h-40 overflow-hidden">
+
+    {/* IMAGEN REAL (ESTO ES LO QUE FALTABA) */}
+    <img
+      src={project.image}
+      alt={project.title}
+      className="w-full h-full object-cover"
+    />
+
+    {/* TU GRADIENTE ORIGINAL (LO DEJO) */}
+    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">
+      <Globe className="w-12 h-12 text-primary/50" />
+    </div>
+
+    {/* OVERLAY DE BOTONES (LO DEJO IGUAL PERO FUNCIONAL) */}
+    <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+      
+      <motion.a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <ExternalLink className="w-5 h-5 text-primary" />
+      </motion.a>
+
+      {project.github && (
+        <motion.a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <Github className="w-5 h-5 text-primary" />
+        </motion.a>
+      )}
+
+    </div>
+
+  </div>
+</div>
 
                   {/* Content */}
                   <div className="p-4 flex-1 flex flex-col">
