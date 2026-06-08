@@ -29,7 +29,7 @@ const projects: Project[] = [
       en: 'E-commerce platform with AI for personalized recommendations',
       pt: 'Plataforma de e-commerce com IA para recomendações personalizadas',
     },
-    image: 'public/venusasite.png',
+     image: '/venusasite.png',
     url: 'https://venusa.site',
     github: 'https://github.com',
     tags: ['PHP', 'HTML', 'CSS', 'JAVA SCRIPT', 'MY SQL'],
