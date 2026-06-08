@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'   
+import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { ExternalLink, Github, Globe, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -23,16 +23,16 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'E-Commerce VENUSA',
+    title: 'E-Commerce Platform',
     description: {
       es: 'Plataforma de comercio electrónico con IA para recomendaciones personalizadas',
       en: 'E-commerce platform with AI for personalized recommendations',
       pt: 'Plataforma de e-commerce com IA para recomendações personalizadas',
     },
-     image: '/venusasite.png',
-    url: 'https://venusa.site',
+    image: '/projects/project-1.jpg',
+    url: 'https://example.com/project1',
     github: 'https://github.com',
-    tags: ['PHP', 'HTML', 'CSS', 'JAVA SCRIPT', 'MY SQL'],
+    tags: ['Next.js', 'TypeScript', 'AI', 'Stripe'],
   },
   {
     id: 2,
@@ -143,9 +143,7 @@ export function Portfolio() {
   }
 
   return (
-    <section id="portfolio" 
-      
-      className="py-20 relative overflow-hidden" ref={ref}>
+    <section id="portfolio" className="py-20 relative overflow-hidden" ref={ref}>
       <div className="absolute inset-0 cyber-grid opacity-30" />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -200,67 +198,89 @@ export function Portfolio() {
         </div>
 
         {/* Projects Grid with Animation */}
-<AnimatePresence mode="wait">
-  <motion.div
-    key={currentPage}
-    initial={{ opacity: 0, x: 100 }}
-    animate={{ opacity: 1, x: 0 }}
-    exit={{ opacity: 0, x: -100 }}
-    transition={{ duration: 0.4, ease: 'easeInOut' }}
-    className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
-  >
-    {visibleProjects.map((project, index) => (
-      <motion.div
-        key={project.id}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: index * 0.1 }}
-        className="group"
-      >
-        <div className="glass border-glow rounded-2xl overflow-hidden hover:glow-cyan-sm transition-all duration-300 h-full flex flex-col group">
-
-          {/* IMAGE */}
-          <div className="relative h-40 overflow-hidden">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 opacity-60 pointer-events-none" />
-
-            <div className="absolute inset-0 bg-background/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-              <motion.a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full glass border-glow"
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentPage}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {visibleProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="group"
               >
-                <ExternalLink className="w-5 h-5 text-primary" />
-              </motion.a>
+                <div className="glass border-glow rounded-2xl overflow-hidden hover:glow-cyan-sm transition-all duration-300 h-full flex flex-col">
+                  {/* Image Preview */}
+                  <div className="relative h-40 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">
+                      <Globe className="w-12 h-12 text-primary/50" />
+                    </div>
+                    <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+                      <motion.a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <ExternalLink className="w-5 h-5 text-primary" />
+                      </motion.a>
+                      {project.github && (
+                        <motion.a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 rounded-full glass border-glow hover:glow-cyan-sm"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <Github className="w-5 h-5 text-primary" />
+                        </motion.a>
+                      )}
+                    </div>
+                  </div>
 
-              {project.github && (
-                <motion.a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full glass border-glow"
-                >
-                  <Github className="w-5 h-5 text-primary" />
-                </motion.a>
-              )}
-            </div>
-          </div>
+                  {/* Content */}
+                  <div className="p-4 flex-1 flex flex-col">
+                    <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-4 flex-1 line-clamp-2">
+                      {project.description[language]}
+                    </p>
 
-        </div>
-      </motion.div>
-    ))}
-
-  </motion.div>
-</AnimatePresence>
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 rounded-full text-xs glass border border-primary/30 text-primary"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {project.tags.length > 3 && (
+                        <span className="px-2 py-0.5 text-xs text-muted-foreground">
+                          +{project.tags.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
         {/* Page Counter */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.5 }}
