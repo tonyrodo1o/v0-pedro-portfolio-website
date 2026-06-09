@@ -30,7 +30,7 @@ const projects: Project[] = [
       pt: 'VENUSA, Sales Online for Amazon',
     },
     image: '/venusasite.png',
-    url: 'https://example.com/project1',
+    url: 'venusa.site',
     github: 'https://github.com',
     tags: ['Php', 'Html', 'CSS', 'MySql', 'Java Script'],
   },
