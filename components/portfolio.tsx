@@ -26,13 +26,13 @@ const projects: Project[] = [
     title: 'E-Commerce Platform',
     description: {
       es: 'Plataforma de comercio electrónico con IA para recomendaciones personalizadas',
-      en: 'E-commerce platform with AI for personalized recommendations',
-      pt: 'Plataforma de e-commerce com IA para recomendações personalizadas',
+      en: 'E-commerce',
+      pt: 'VENUSA, Sales Online for Amazon',
     },
-    image: '/projects/project-1.jpg',
+    image: '/projects/venusasite.png',
     url: 'https://example.com/project1',
     github: 'https://github.com',
-    tags: ['Next.js', 'TypeScript', 'AI', 'Stripe'],
+    tags: ['Php', 'Html', 'CSS', 'MySql', 'Java Script'],
   },
   {
     id: 2,
