@@ -92,9 +92,9 @@ const projects: Project[] = [
       pt: 'Portal de saúde com telemedicina e gestão de consultas',
     },
     image: '/projects/project-6.jpg',
-    url: 'https://example.com/project6',
+    url: 'https://echangue-suport.pages.dev/',
     github: 'https://github.com',
-    tags: ['Next.js', 'PostgreSQL', 'WebRTC'],
+    tags: ['React', 'Vite', 'TypeScript'],
   },
   {
     id: 7,
