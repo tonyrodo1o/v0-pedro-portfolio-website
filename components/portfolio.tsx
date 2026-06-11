@@ -80,7 +80,7 @@ const projects: Project[] = [
       pt: 'Sistema automatizado',
     },
     image: '/projects/project-5.jpg',
-    url: 'https://foodie-point-shop.pages.dev/auth',
+    url: 'https://foodie-point-shop.pages.dev',
     tags: ['Vite', 'TypeScript', 'Node,js', 'Java Script', 'React'],
   },
   {
