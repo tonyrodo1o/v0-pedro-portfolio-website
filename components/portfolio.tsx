@@ -85,7 +85,7 @@ const projects: Project[] = [
   },
   {
     id: 6,
-    title: 'Healthcare Portal',
+    title: 'Changue Money',
     description: {
       es: 'Portal de salud con telemedicina y gestión de citas',
       en: 'Healthcare portal with telemedicine and appointment management',
