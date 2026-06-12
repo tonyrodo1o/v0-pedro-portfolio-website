@@ -110,15 +110,15 @@ const projects: Project[] = [
   },
   {
     id: 8,
-    title: 'Social Media Platform',
+    title: 'Posada Er Corocoro',
     description: {
-      es: 'Red social con algoritmos de recomendación personalizados',
-      en: 'Social network with personalized recommendation algorithms',
-      pt: 'Rede social com algoritmos de recomendação personalizados',
+      es: 'Web Site de Posada Turistica',
+      en: 'Pagina web de contacto, Galeria',
+      pt: 'Rervas e informacion General',
     },
     image: '/projects/project-8.jpg',
-    url: 'https://example.com/project8',
-    tags: ['Next.js', 'GraphQL', 'Redis', 'AWS'],
+    url: 'https://caribbean-ai-oasis.pages.dev/',
+    tags: ['Next.js', 'TypeSrite', 'Vite', 'Supabase'],
   },
 ]
 
