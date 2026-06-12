@@ -1,4 +1,3 @@
-
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
@@ -178,26 +177,23 @@ export function AboutMe() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                     <img 
-  src={image.src} 
-  alt={image.alt}
-  className="w-full h-full object-cover absolute inset-0 transition-transform duration-300 group-hover:scale-110"
-  onError={(e) => {
-    const target = e.target as HTMLImageElement;
-    // Si falló con .jpg minúscula, probamos con .JPG mayúscula
-    if (target.src.endsWith('.jpg')) {
-      target.src = target.src.replace('.jpg', '.JPG');
-    } 
-    // Si falló el .JPG, intentamos con .png por si acaso
-    else if (target.src.endsWith('.JPG')) {
-      target.src = target.src.replace('.JPG', '.png');
-    }
-    // Si falló el .png, intentamos con .jpeg
-    else if (target.src.endsWith('.png')) {
-      target.src = target.src.replace('.png', '.jpeg');
-    }
-  }}
-/>
+                      <img 
+                        src={image.src} 
+                        alt={image.alt}
+                        className="w-full h-full object-cover absolute inset-0 transition-transform duration-300 group-hover:scale-110"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          const fallbacks = ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.webp', '.WEBP'];
+                          const currentIdx = parseInt(target.getAttribute('data-fallback-idx') || '0', 10);
+                          
+                          if (currentIdx < fallbacks.length - 1) {
+                            const nextIdx = currentIdx + 1;
+                            target.setAttribute('data-fallback-idx', nextIdx.toString());
+                            const baseSrc = image.src.substring(0, image.src.lastIndexOf('.'));
+                            target.src = baseSrc + fallbacks[nextIdx];
+                          }
+                        }}
+                      />
                       
                       <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
                         <span className="opacity-0 group-hover:opacity-100 text-foreground text-sm bg-background/80 px-3 py-1 rounded-full backdrop-blur-sm transition-opacity font-medium">
@@ -248,8 +244,15 @@ export function AboutMe() {
                 className="max-w-full max-h-full object-contain"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  if (!target.src.endsWith('.JPG')) {
-                    target.src = target.src.replace('.jpg', '.JPG');
+                  const fallbacks = ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.webp', '.WEBP'];
+                  const currentIdx = parseInt(target.getAttribute('data-fallback-idx') || '0', 10);
+                  
+                  if (currentIdx < fallbacks.length - 1) {
+                    const nextIdx = currentIdx + 1;
+                    target.setAttribute('data-fallback-idx', nextIdx.toString());
+                    const currentImg = galleryImages[selectedImageIndex];
+                    const baseSrc = currentImg.src.substring(0, currentImg.src.lastIndexOf('.'));
+                    target.src = baseSrc + fallbacks[nextIdx];
                   }
                 }}
               />
@@ -300,5 +303,3 @@ export function AboutMe() {
     </section>
   )
 }
-
-
