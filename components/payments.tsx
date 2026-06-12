@@ -32,7 +32,7 @@ export function Payments() {
       id: 'transfer',
       icon: Landmark,
       name: t.payments.transfer,
-      brands: ['Zelle', 'Wire'],
+      brands: ['Zelle', 'Wire', 'Banco nacional', 'Banco Virtual'],
     },
   ]
 
