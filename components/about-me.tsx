@@ -192,11 +192,7 @@ export function AboutMe() {
               </motion.div>
             </AnimatePresence>
 
-            <p className="text-sm text-muted-foreground mt-4 text-center">
-              * {language === 'es' ? 'Añade tus fotos en /public/gallery/' : 
-                 language === 'en' ? 'Add your photos to /public/gallery/' : 
-                 'Adicione suas fotos em /public/gallery/'}
-            </p>
+           
           </motion.div>
         </div>
       </div>
