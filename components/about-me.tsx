@@ -1,14 +1,4 @@
-La solución correcta y definitiva para que **se vean todas las imágenes reales**, funcione el autocorrector de extensiones y **no se rompa el despliegue** es reemplazar por completo tu archivo `components/about-me.tsx` por la versión limpia que te dejo aquí abajo.
 
-Este código ya tiene corregidos los tres problemas:
-
-1. Muestra las imágenes reales (usando la etiqueta `<img>`).
-2. Quita la paginación para que se vean las 8 de corrido (estableciendo `IMAGES_PER_PAGE = 8`).
-3. No tiene los comentarios internos que rompían la compilación de Turbopack.
-
-Copia **todo** este código y pégalo completo en tu archivo:
-
-```tsx
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
@@ -302,6 +292,4 @@ export function AboutMe() {
   )
 }
 
-```
 
-Guarda los cambios haciendo el **Commit** en GitHub, espera dos minutos a que el servidor termine de compilar y todo funcionará de forma impecable.
