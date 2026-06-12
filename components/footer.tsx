@@ -5,7 +5,7 @@ import { Heart, Linkedin, Twitter, Instagram, Youtube, MessageCircle } from 'luc
 import { useLanguage } from '@/lib/language-context'
 
 const socialLinks = [
-  { id: 'linkedin', icon: Linkedin, url: 'https://linkedin.com/in/pedrorodriguez' },
+  { id: 'linkedin', icon: Linkedin, url: 'https://linkedin.com/in/antonio-acosta-degree-in-computer-science-b88148220' },
   { id: 'twitter', icon: Twitter, url: 'https://twitter.com/pedrorodriguez' },
   { id: 'instagram', icon: Instagram, url: 'https://instagram.com/pedrorodriguez' },
   { id: 'whatsapp', icon: MessageCircle, url: 'https://wa.me/1234567890' },
