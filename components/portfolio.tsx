@@ -87,9 +87,9 @@ const projects: Project[] = [
     id: 6,
     title: 'Changue Money',
     description: {
-      es: 'Portal de salud con telemedicina y gestión de citas',
-      en: 'Healthcare portal with telemedicine and appointment management',
-      pt: 'Portal de saúde com telemedicina e gestão de consultas',
+      es: 'Portal de cambios de Divisas, Criptomonedas',
+      en: 'Operaciones diarias cambios al isntante',
+      pt: 'Consulta Mercado Volatil',
     },
     image: '/projects/project-6.jpg',
     url: 'https://echangue-suport.pages.dev/',
@@ -98,15 +98,15 @@ const projects: Project[] = [
   },
   {
     id: 7,
-    title: 'Inventory Management',
+    title: 'Onnimico',
     description: {
-      es: 'Sistema de gestión de inventario con predicción de demanda',
-      en: 'Inventory management system with demand prediction',
-      pt: 'Sistema de gestão de inventário com previsão de demanda',
+      es: 'Sistema de Domina Para Colombia',
+      en: 'Manejo de Nomica Acorde a La Ley de Colombia',
+      pt: 'Gestion de Nominas de pago de Empleados',
     },
     image: '/projects/project-7.jpg',
     url: 'https://example.com/project7',
-    tags: ['React', 'Python', 'Machine Learning'],
+    tags: ['React', 'Node,js', 'VIte', 'Postgresql'],
   },
   {
     id: 8,
