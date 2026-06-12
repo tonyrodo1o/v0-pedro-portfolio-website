@@ -1,3 +1,4 @@
+
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
@@ -6,15 +7,13 @@ import { useRef, useState, useCallback } from 'react'
 import { Heart, Target, Lightbulb, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useLanguage } from '@/lib/language-context'
 
+// Array optimizado con las 5 fotos reales de tu carpeta /public/gallery
 const galleryImages = [
   { id: 1, src: '/gallery/photo-1.jpg', alt: 'Professional photo 1' }, 
   { id: 2, src: '/gallery/photo-2.jpg', alt: 'Professional photo 2' },
   { id: 3, src: '/gallery/photo-3.jpg', alt: 'Professional photo 3' },
   { id: 4, src: '/gallery/photo-4.jpg', alt: 'Professional photo 4' },
   { id: 5, src: '/gallery/photo-5.jpg', alt: 'Professional photo 5' },
-  { id: 6, src: '/gallery/photo-6.jpg', alt: 'Professional photo 6' },
-  { id: 7, src: '/gallery/photo-7.jpg', alt: 'Professional photo 7' },
-  { id: 8, src: '/gallery/photo-8.jpg', alt: 'Professional photo 8' },
 ]
 
 export function AboutMe() {
@@ -174,15 +173,20 @@ export function AboutMe() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.08 }}
                       onClick={() => openLightbox(globalIndex)}
-                      className="relative aspect-square rounded-xl overflow-hidden border-glow group"
+                      className="relative aspect-square rounded-xl overflow-hidden border-glow group bg-background"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                        <span className="text-4xl font-bold text-primary/30">{image.id}</span>
-                      </div>
+                      {/* IMAGEN INTEGRADA: Muestra la miniatura física */}
+                      <img 
+                        src={image.src} 
+                        alt={image.alt}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      
+                      {/* Capa Interactiva Superior */}
                       <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
-                        <span className="opacity-0 group-hover:opacity-100 text-foreground text-sm transition-opacity">
+                        <span className="opacity-0 group-hover:opacity-100 text-foreground text-sm bg-background/80 px-3 py-1 rounded-full backdrop-blur-sm transition-opacity font-medium">
                           {language === 'es' ? 'Ver' : language === 'en' ? 'View' : 'Ver'}
                         </span>
                       </div>
@@ -191,13 +195,11 @@ export function AboutMe() {
                 })}
               </motion.div>
             </AnimatePresence>
-
-           
           </motion.div>
         </div>
       </div>
 
-      {/* Lightbox with Navigation */}
+      {/* Lightbox con Navegación */}
       <AnimatePresence>
         {selectedImageIndex !== null && (
           <motion.div
@@ -207,7 +209,7 @@ export function AboutMe() {
             className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-md p-4"
             onClick={closeLightbox}
           >
-            {/* Previous Button */}
+            {/* Botón Anterior */}
             <motion.button
               onClick={(e) => {
                 e.stopPropagation()
@@ -220,35 +222,31 @@ export function AboutMe() {
               <ChevronLeft className="w-8 h-8 text-primary" />
             </motion.button>
 
-            {/* Image Container */}
+            {/* Contenedor de la Imagen */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-4xl w-full max-h-[80vh] aspect-video rounded-2xl overflow-hidden glass border-glow"
+              className="relative max-w-4xl w-full max-h-[80vh] aspect-video rounded-2xl overflow-hidden glass border-glow bg-background flex items-center justify-center"
             >
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10">
-                <div className="text-center">
-                  <span className="text-8xl font-bold text-primary/30">
-                    {galleryImages[selectedImageIndex].id}
-                  </span>
-                  <p className="text-muted-foreground mt-4">
-                    {language === 'es' ? 'Foto' : language === 'en' ? 'Photo' : 'Foto'} {selectedImageIndex + 1} / {galleryImages.length}
-                  </p>
-                </div>
-              </div>
+              {/* IMAGEN INTEGRADA: Renderiza la foto a pantalla completa adaptada */}
+              <img 
+                src={galleryImages[selectedImageIndex].src} 
+                alt={galleryImages[selectedImageIndex].alt} 
+                className="w-full h-full object-contain"
+              />
               
-              {/* Close Button */}
+              {/* Botón Cerrar */}
               <button
                 onClick={closeLightbox}
-                className="absolute top-4 right-4 p-2 rounded-full glass border-glow hover:glow-cyan-sm transition-all"
+                className="absolute top-4 right-4 p-2 rounded-full glass border-glow hover:glow-cyan-sm transition-all bg-background/50 backdrop-blur-sm"
               >
                 <X className="w-6 h-6 text-foreground" />
               </button>
             </motion.div>
 
-            {/* Next Button */}
+            {/* Botón Siguiente */}
             <motion.button
               onClick={(e) => {
                 e.stopPropagation()
@@ -261,7 +259,7 @@ export function AboutMe() {
               <ChevronRight className="w-8 h-8 text-primary" />
             </motion.button>
 
-            {/* Image Counter */}
+            {/* Indicadores de Posición Inferiores (Dots) */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2">
               {galleryImages.map((_, idx) => (
                 <button
@@ -284,3 +282,4 @@ export function AboutMe() {
     </section>
   )
 }
+
