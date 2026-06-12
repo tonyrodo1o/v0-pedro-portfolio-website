@@ -105,7 +105,7 @@ const projects: Project[] = [
       pt: 'Gestion de Nominas de pago de Empleados',
     },
     image: 'https://onnomico.pages.dev/',
-    url: 'https://example.com/project7',
+    url: 'https://onnomico.pages.dev/auth',
     tags: ['React', 'Node,js', 'VIte', 'Postgresql'],
   },
   {
