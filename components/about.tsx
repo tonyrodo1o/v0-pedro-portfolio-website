@@ -14,8 +14,9 @@ const stats = [
 ]
 
 const technologies = [
-  'React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'TensorFlow',
-  'AWS', 'Docker', 'PostgreSQL', 'MongoDB', 'GraphQL', 'Tailwind CSS',
+  'React', 'Node.js', 'Next.js', 'TypeScript', 'Vite', 'PHP', 'MySql',
+  'CSS', 'Java Script', 'PostgreSQL', 'Html', 'Sql', 'Tailwind CSS', 
+  'Git Hub', 'Claudfare', 'Netlify', 'Vercel', 'IA',
 ]
 
 export function About() {
