@@ -104,7 +104,7 @@ const projects: Project[] = [
       en: 'Manejo de Nomica Acorde a La Ley de Colombia',
       pt: 'Gestion de Nominas de pago de Empleados',
     },
-    image: 'https://onnomico.pages.dev/auth',
+    image: 'https://onnomico.pages.dev/',
     url: 'https://example.com/project7',
     tags: ['React', 'Node,js', 'VIte', 'Postgresql'],
   },
