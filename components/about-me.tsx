@@ -155,46 +155,54 @@ export function AboutMe() {
               )}
             </div>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={galleryPage}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-3 gap-3"
-              >
-                {visibleImages.map((image, index) => {
-                  const globalIndex = galleryPage * IMAGES_PER_PAGE + index
-                  return (
-                    <motion.button
-                      key={image.id}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.08 }}
-                      onClick={() => openLightbox(globalIndex)}
-                      className="relative aspect-square rounded-xl overflow-hidden border-glow group bg-background"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {/* IMAGEN INTEGRADA: Muestra la miniatura física */}
-                      <img 
-                        src={image.src} 
-                        alt={image.alt}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                      
-                      {/* Capa Interactiva Superior */}
-                      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
-                        <span className="opacity-0 group-hover:opacity-100 text-foreground text-sm bg-background/80 px-3 py-1 rounded-full backdrop-blur-sm transition-opacity font-medium">
-                          {language === 'es' ? 'Ver' : language === 'en' ? 'View' : 'Ver'}
-                        </span>
-                      </div>
-                    </motion.button>
-                  )
-                })}
-              </motion.div>
-            </AnimatePresence>
+           {/* Sección de la Galería con el arreglo corregido */}
+<AnimatePresence mode="wait">
+  <motion.div
+    key={galleryPage}
+    initial={{ opacity: 0, x: 50 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: -50 }}
+    transition={{ duration: 0.3 }}
+    {/* Cambiamos a un diseño flexible si hay menos fotos para que no se rompa */}
+    className="grid grid-cols-2 sm:grid-cols-3 gap-3" 
+  >
+    {/* Usamos directamente galleryImages en lugar de visibleImages si son pocas */}
+    {galleryImages.map((image, index) => {
+      return (
+        <motion.button
+          key={image.id}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: index * 0.05 }} {/* Reducido el delay para evitar saltos */}
+          onClick={() => openLightbox(index)}
+          className="relative aspect-square rounded-xl overflow-hidden border-glow group bg-background"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <img 
+            src={image.src} 
+            alt={image.alt}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            {/* Añadimos un manejador de error por si el archivo en GitHub aún no se actualiza */}
+            onError={(e) => {
+              // Si falla photo-5.jpg, intenta cargar photo-5.JPG automáticamente
+              const target = e.target as HTMLImageElement;
+              if (!target.src.endsWith('.JPG')) {
+                target.src = image.src.replace('.jpg', '.JPG');
+              }
+            }}
+          />
+          
+          <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
+            <span className="opacity-0 group-hover:opacity-100 text-foreground text-sm bg-background/80 px-3 py-1 rounded-full backdrop-blur-sm transition-opacity font-medium">
+              {language === 'es' ? 'Ver' : language === 'en' ? 'View' : 'Ver'}
+            </span>
+          </div>
+        </motion.button>
+      )
+    })}
+  </motion.div>
+</AnimatePresence>
           </motion.div>
         </div>
       </div>
