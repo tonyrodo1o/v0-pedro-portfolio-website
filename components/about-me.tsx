@@ -24,7 +24,7 @@ export function AboutMe() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
   const [galleryPage, setGalleryPage] = useState(0)
 
-  const IMAGES_PER_PAGE = 6
+  const IMAGES_PER_PAGE = 8
   const totalGalleryPages = Math.ceil(galleryImages.length / IMAGES_PER_PAGE)
   const visibleImages = galleryImages.slice(
     galleryPage * IMAGES_PER_PAGE,
