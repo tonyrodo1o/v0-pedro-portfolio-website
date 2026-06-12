@@ -7,7 +7,7 @@ import { Heart, Target, Lightbulb, X, ChevronLeft, ChevronRight } from 'lucide-r
 import { useLanguage } from '@/lib/language-context'
 
 const galleryImages = [
-  { id: 1, src: '/gallery/photo-1.jpg', alt: 'Professional photo 1' },
+  { id: 1, src: '/gallery/photo-1.jpg', alt: 'Professional photo 1' }, 
   { id: 2, src: '/gallery/photo-2.jpg', alt: 'Professional photo 2' },
   { id: 3, src: '/gallery/photo-3.jpg', alt: 'Professional photo 3' },
   { id: 4, src: '/gallery/photo-4.jpg', alt: 'Professional photo 4' },
