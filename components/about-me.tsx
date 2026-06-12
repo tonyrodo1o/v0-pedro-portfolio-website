@@ -178,17 +178,26 @@ export function AboutMe() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <img 
-                        src={image.src} 
-                        alt={image.alt}
-                        className="w-full h-full object-cover absolute inset-0 transition-transform duration-300 group-hover:scale-110"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          if (!target.src.endsWith('.JPG')) {
-                            target.src = image.src.replace('.jpg', '.JPG');
-                          }
-                        }}
-                      />
+                     <img 
+  src={image.src} 
+  alt={image.alt}
+  className="w-full h-full object-cover absolute inset-0 transition-transform duration-300 group-hover:scale-110"
+  onError={(e) => {
+    const target = e.target as HTMLImageElement;
+    // Si falló con .jpg minúscula, probamos con .JPG mayúscula
+    if (target.src.endsWith('.jpg')) {
+      target.src = target.src.replace('.jpg', '.JPG');
+    } 
+    // Si falló el .JPG, intentamos con .png por si acaso
+    else if (target.src.endsWith('.JPG')) {
+      target.src = target.src.replace('.JPG', '.png');
+    }
+    // Si falló el .png, intentamos con .jpeg
+    else if (target.src.endsWith('.png')) {
+      target.src = target.src.replace('.png', '.jpeg');
+    }
+  }}
+/>
                       
                       <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors flex items-center justify-center">
                         <span className="opacity-0 group-hover:opacity-100 text-foreground text-sm bg-background/80 px-3 py-1 rounded-full backdrop-blur-sm transition-opacity font-medium">
