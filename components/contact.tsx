@@ -51,9 +51,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 };
 
   const contactInfo = [
-    { icon: Mail, label: 'pedrorodriguez@email.com', href: 'mailto:pedrorodriguez@email.com' },
-    { icon: Phone, label: '+1 234 567 890', href: 'tel:+1234567890' },
-    { icon: MapPin, label: 'Ciudad, País', href: '#' },
+    { icon: Mail, label: 'pedrorodact01@email.com', href: 'mailto:pedrorodact01@email.com' },
+    { icon: Phone, label: '+44 74 8192 8763', href: 'tel:+447481928763' },
+    { icon: MapPin, label: 'Londres, Reino Unido', href: '#' },
   ]
 
   return (
