@@ -109,17 +109,30 @@ const projects: Project[] = [
     tags: ['React', 'Node,js', 'VIte', 'Postgresql'],
   },
   {
-    id: 8,
-    title: 'Posada Er Corocoro',
+    id: 9,
+    title: 'Raymi Realtors',
     description: {
-      es: 'Web Site de Posada Turistica',
+      es: 'Web Site de Arquitectura y Abogados',
       en: 'Pagina web de contacto, Galeria',
       pt: 'Rervas e informacion General',
     },
-    image: '/projects/project-8.jpg',
+    image: '/projects/project-9.jpg',
+    url: 'https://property-palace-71.pedrorodact01.workers.dev',
+    tags: ['Next.js', 'TypeSrite', 'Vite', 'Supabase'],
+  },
+       pt: 'Rervas e informacion General',
+    },
+    image: '/projects/project-9.jpg',
     url: 'https://caribbean-ai-oasis.pages.dev',
     tags: ['Next.js', 'TypeSrite', 'Vite', 'Supabase'],
   },
+]
+
+const ITEMS_PER_PAGE = 4
+
+export function Portfolio() {
+  const { t, language } = useLanguage()
+  cons
 ]
 
 const ITEMS_PER_PAGE = 4
