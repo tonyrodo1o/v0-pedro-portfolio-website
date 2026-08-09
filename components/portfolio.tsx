@@ -108,6 +108,19 @@ const projects: Project[] = [
     url: 'https://onnomico.pages.dev/auth',
     tags: ['React', 'Node,js', 'VIte', 'Postgresql'],
   },
+   {
+    id: 8,
+    title: 'Posada er corocoro',
+    description: {
+      es: 'Web Site de Posada Turistica Reserva Servicios',
+      en: 'Pagina web de Posada Reservas',
+      pt: 'Rervas e informacion General',
+    },
+    image: '/projects/project-8.jpg',
+    url: 'https://caribe-ai-oasis.pages.dev',
+    tags: ['Next.js', 'TypeSrite', 'Vite', 'Supabase'],
+  },
+     
   {
     id: 9,
     title: 'Raymi Realtors',
@@ -120,12 +133,7 @@ const projects: Project[] = [
     url: 'https://property-palace-71.pedrorodact01.workers.dev',
     tags: ['Next.js', 'TypeSrite', 'Vite', 'Supabase'],
   },
-       pt: 'Rervas e informacion General',
-    },
-    image: '/projects/project-9.jpg',
-    url: 'https://caribbean-ai-oasis.pages.dev',
-    tags: ['Next.js', 'TypeSrite', 'Vite', 'Supabase'],
-  },
+
 ]
 
 const ITEMS_PER_PAGE = 4
