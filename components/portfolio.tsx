@@ -56,7 +56,7 @@ const projects: Project[] = [
     },
     image: '/projects/project-3.jpg',
     url: 'https://onnomi.online',
-    tags: ['React', 'Node,js', 'Vite', 'TypeScript', ],
+    tags: ['React', 'Node,js', 'Vite', 'TypeScript'],
   },
   {
     id: 4,
@@ -134,13 +134,6 @@ const projects: Project[] = [
     tags: ['Next.js', 'TypeSrite', 'Vite', 'Supabase'],
   },
 
-]
-
-const ITEMS_PER_PAGE = 4
-
-export function Portfolio() {
-  const { t, language } = useLanguage()
-  cons
 ]
 
 const ITEMS_PER_PAGE = 4
