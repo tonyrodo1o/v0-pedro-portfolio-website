@@ -31,7 +31,6 @@ const projects: Project[] = [
     },
     image: 'venusasite.png',
     url: 'https://venusa.site',
-    github: 'https://github.com',
     tags: ['Php', 'Html', 'CSS', 'MySql', 'Java Script'],
   },
   {
@@ -68,7 +67,6 @@ const projects: Project[] = [
     },
     image: '/projects/project-4.jpg',
     url: 'https://valhalla-candicandishop.pages.dev',
-    github: 'https://github.com',
     tags: ['Vite', 'TypeScript', 'Node,js', 'Java Script', 'React'],
   },
   {
@@ -93,7 +91,6 @@ const projects: Project[] = [
     },
     image: '/projects/project-6.jpg',
     url: 'https://echangue-suport.pages.dev/',
-    github: 'https://github.com',
     tags: ['React', 'Vite', 'TypeScript'],
   },
   {
