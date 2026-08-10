@@ -112,12 +112,12 @@ const projects: Project[] = [
     id: 8,
     title: 'Posada er corocoro',
     description: {
-      es: 'Web Site de Posada Turistica Reserva Servicios',
+      es: 'Web Site de Posada Turistica Reserva Servicios', 
       en: 'Pagina web de Posada Reservas',
       pt: 'Rervas e informacion General',
     },
     image: '/projects/project-8.jpg',
-    url: 'https://caribe-ai-oasis.pages.dev',
+    url: 'https://caribe-ai-oasis.pages.dev', 
     tags: ['Next.js', 'TypeSrite', 'Vite', 'Supabase'],
   },
      
