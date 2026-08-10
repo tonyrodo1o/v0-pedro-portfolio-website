@@ -117,7 +117,7 @@ const projects: Project[] = [
       pt: 'Rervas e informacion General',
     },
     image: '/projects/project-8.jpg',
-    url: 'https://caribe-ai-oasis.pages.dev', 
+    url: 'https://caribbean-ai-oasis.pages.dev', 
     tags: ['Next.js', 'TypeSrite', 'Vite', 'Supabase'],
   },
      
